@@ -8,6 +8,8 @@ Capture feed;
 MateBox mb[][] = new MateBox[16][12];
 int boxSide = 40;
 
+Population population;
+
 void setup()
 {
   size(640, 480);
@@ -21,6 +23,8 @@ void setup()
        mb[i][j] = new MateBox (i*boxSide, j*boxSide);
      } 
   }
+  
+  population = new Population(mb[16][12]);
 }
 
 void draw()
@@ -34,7 +38,7 @@ void draw()
   for (int i=0; i < 16; i++){
      for (int j=0; j < 12; j++){
        mb[i][j].display();
-       mb[i][j].crossover();
+       //mb[i][j].crossover();
      } 
   }
 }

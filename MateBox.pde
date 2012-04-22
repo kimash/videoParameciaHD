@@ -30,41 +30,36 @@ class MateBox
     rect(x, y, boxSide, boxSide);
   }
 
-  MateBox crossover (MateBox partner)  //idea: paramecium-style conjugation
+  MateBox crossover (MateBox partner)  
   {
     PImage newSection = createImage(boxSide, boxSide, RGB);
     section.loadPixels();
     partner.section.loadPixels();
     newSection.loadPixels();
 
-    //int[] newdna = new int[dna.length];
     int crossover = int(random(section.pixels.length));
     for (int i = 0; i < section.pixels.length; i++)
     {
       if (i > crossover)
       {
         newSection.pixels[i] = section.pixels[i];
-        //dna = section.pixels[];
-        //dna[i];
-        //section.updatePixels();
       }
       else
       {
         newSection.pixels[i] = partner.section.pixels[i];
-
-        //        partner.section.loadPixels();
-        //        partner.dna = section.pixels[];
-        //        partner.dna[i];
-        //        partner.section.updatePixels();
-        //      }
       }
     }
     
     newSection.updatePixels();
     MateBox offspring = new MateBox(newSection);
-    return offspring;
+    return offspring; //must define location for offspring box
   }
-    
+  
+  void conjugate(MateBox partner)  //paramecium-style conjugation
+  {
+    section.loadPixels();
+    partner.section.loadPixels();
+  }
     
  }
 
