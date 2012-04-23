@@ -12,13 +12,11 @@ class MateBox
     x = x_;
     y = y_;
     section = new PImage(boxSide, boxSide);
-    //dna = new int[boxSide*boxSide];
   }
 
   MateBox (PImage img) //alternate constructor for offspring
   {
     section = img;
-    //dna = newdna;
   }
 
   void display()
@@ -72,6 +70,7 @@ class MateBox
         newSection.pixels[i] = partner.section.pixels[i];
         section.pixels[i] = newSection.pixels[i];
       }
+    }
   }
     
  }

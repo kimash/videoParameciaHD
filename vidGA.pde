@@ -42,11 +42,13 @@ void draw()
        mb[i][j].display();
      } 
   }
+  //if (frameCount % 5 == 0)  //this won't work, need better constraints
+  reproduction();
+  //}
 }
 
 void reproduction()
  {
-   //if (frameCount % 5 == 0) 
    for (int i = 0; i < matingPool.size(); i++)
    {
      int m = int(random(matingPool.size()));
@@ -54,9 +56,15 @@ void reproduction()
      
      MateBox mom = matingPool.get(m);
      MateBox dad = matingPool.get(d);
-     MateBox offspring = mom.crossover(dad);
      
-     //method to select mb to replace
-     //mb[x][y] = offspring;
+//     MateBox offspring = mom.crossover(dad);
+//     //replace randomly selected mb with newly created one
+//     int b = int(random(matingPool.size()));  
+//     MateBox birth = matingPool.get(b);
+//     birth = offspring;
+// 
+     mom.conjugate(dad);
+     mom.display();
+     dad.display();
    }
  }
