@@ -40,12 +40,10 @@ class MateBox
     int crossover = int(random(section.pixels.length));
     for (int i = 0; i < section.pixels.length; i++)
     {
-      if (i > crossover)
-      {
+      if (i > crossover){
         newSection.pixels[i] = section.pixels[i];
       }
-      else
-      {
+      else{
         newSection.pixels[i] = partner.section.pixels[i];
       }
     }
@@ -57,8 +55,23 @@ class MateBox
   
   void conjugate(MateBox partner)  //paramecium-style conjugation
   {
+    PImage newSection = createImage(boxSide, boxSide, RGB);
+    //in this case, newSection acts as placeholder for pixel trade between mb and partner
     section.loadPixels();
     partner.section.loadPixels();
+    newSection.loadPixels();
+    
+    int crossover = int(random(section.pixels.length));
+    for (int i = 0; i < section.pixels.length; i++)
+    {
+      if (i > crossover){
+        newSection.pixels[i] = section.pixels[i];
+        partner.section.pixels[i] = newSection.pixels[i]; 
+      }
+      else{
+        newSection.pixels[i] = partner.section.pixels[i];
+        section.pixels[i] = newSection.pixels[i];
+      }
   }
     
  }

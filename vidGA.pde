@@ -8,7 +8,8 @@ Capture feed;
 MateBox mb[][] = new MateBox[16][12];
 int boxSide = 40;
 
-Population population;
+ArrayList<MateBox> matingPool;
+int generations;
 
 void setup()
 {
@@ -18,13 +19,14 @@ void setup()
   feed = new Capture(this, 640, 480);
   feed.start();
   
+  matingPool = new ArrayList<MateBox>();
+  
   for (int i=0; i < 16; i++){
      for (int j=0; j < 12; j++){
        mb[i][j] = new MateBox (i*boxSide, j*boxSide);
+       matingPool.add(mb[i][j]);
      } 
   }
-  
-  population = new Population(mb[16][12]);
 }
 
 void draw()
@@ -38,7 +40,23 @@ void draw()
   for (int i=0; i < 16; i++){
      for (int j=0; j < 12; j++){
        mb[i][j].display();
-       //mb[i][j].crossover();
      } 
   }
 }
+
+void reproduction()
+ {
+   //if (frameCount % 5 == 0) 
+   for (int i = 0; i < matingPool.size(); i++)
+   {
+     int m = int(random(matingPool.size()));
+     int d = int(random(matingPool.size()));
+     
+     MateBox mom = matingPool.get(m);
+     MateBox dad = matingPool.get(d);
+     MateBox offspring = mom.crossover(dad);
+     
+     //method to select mb to replace
+     //mb[x][y] = offspring;
+   }
+ }
