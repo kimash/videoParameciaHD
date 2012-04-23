@@ -27,6 +27,7 @@ void setup()
        matingPool.add(mb[i][j]);
      } 
   }
+  frameRate(15);
 }
 
 void draw()
@@ -39,12 +40,17 @@ void draw()
   
   for (int i=0; i < 16; i++){
      for (int j=0; j < 12; j++){
+      mb[i][j].grabVideo();
+     } 
+  }
+  
+  reproduction();
+  
+  for (int i=0; i < 16; i++){
+     for (int j=0; j < 12; j++){
        mb[i][j].display();
      } 
   }
-  //if (frameCount % 5 == 0)  //this won't work, need better constraints
-  reproduction();
-  //}
 }
 
 void reproduction()
@@ -62,9 +68,12 @@ void reproduction()
 //     int b = int(random(matingPool.size()));  
 //     MateBox birth = matingPool.get(b);
 //     birth = offspring;
-// 
+//     birth.display();
+
      mom.conjugate(dad);
-     mom.display();
-     dad.display();
+    
+    //mom.switcher(dad);
+//     mom.display();
+//     dad.display();
    }
  }

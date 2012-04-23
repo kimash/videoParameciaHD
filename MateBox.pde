@@ -1,6 +1,6 @@
 class MateBox
 {
-  PImage section;
+ public  PImage section;
 
   //int[] dna;
 
@@ -12,6 +12,7 @@ class MateBox
     x = x_;
     y = y_;
     section = new PImage(boxSide, boxSide);
+   
   }
 
   MateBox (PImage img) //alternate constructor for offspring
@@ -19,13 +20,25 @@ class MateBox
     section = img;
   }
 
+  void grabVideo()
+  {
+    section = get(x, y, boxSide, boxSide);
+  }
+  
   void display()
   {
-    stroke(255, 255, 0);
+    //stroke(255, 255, 0);
+    noStroke();
     noFill();
-    section = get(x, y, boxSide, boxSide);
+  //section = get(x, y, boxSide, boxSide);
     image(section, x, y);
     rect(x, y, boxSide, boxSide);
+  }
+
+  void switcher(MateBox partner){  //test function
+     PImage store = section;
+       partner.section = section;
+       section = store;  
   }
 
   MateBox crossover (MateBox partner)  
@@ -53,22 +66,22 @@ class MateBox
   
   void conjugate(MateBox partner)  //paramecium-style conjugation
   {
-    PImage newSection = createImage(boxSide, boxSide, RGB);
-    //in this case, newSection acts as placeholder for pixel trade between mb and partner
+    PImage store = createImage(boxSide, boxSide, RGB);
+    //storage for pixel trade between mb and partner
     section.loadPixels();
     partner.section.loadPixels();
-    newSection.loadPixels();
+    store.loadPixels();
     
     int crossover = int(random(section.pixels.length));
     for (int i = 0; i < section.pixels.length; i++)
     {
       if (i > crossover){
-        newSection.pixels[i] = section.pixels[i];
-        partner.section.pixels[i] = newSection.pixels[i]; 
+        store.pixels[i] = section.pixels[i];
+        partner.section.pixels[i] = store.pixels[i]; 
       }
       else{
-        newSection.pixels[i] = partner.section.pixels[i];
-        section.pixels[i] = newSection.pixels[i];
+        store.pixels[i] = partner.section.pixels[i];
+        section.pixels[i] = store.pixels[i];
       }
     }
   }
