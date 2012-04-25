@@ -10,6 +10,7 @@ int boxSide = 40;
 
 ArrayList<MateBox> matingPool;
 int generations;
+color mutation = color(random(255), random(255), random(255));
 
 void setup()
 {
@@ -41,6 +42,7 @@ void draw()
   for (int i=0; i < 16; i++){
      for (int j=0; j < 12; j++){
       mb[i][j].grabVideo();
+      mb[i][j].mutate(0.005, mutation);
      } 
   }
   
@@ -71,9 +73,5 @@ void reproduction()
 //     birth.display();
 
      mom.conjugate(dad);
-    
-    //mom.switcher(dad);
-//     mom.display();
-//     dad.display();
    }
  }

@@ -1,8 +1,6 @@
 class MateBox
 {
- public  PImage section;
-
-  //int[] dna;
+  public PImage section;
 
   int boxSide = 40;
   int x, y;
@@ -12,7 +10,6 @@ class MateBox
     x = x_;
     y = y_;
     section = new PImage(boxSide, boxSide);
-   
   }
 
   MateBox (PImage img) //alternate constructor for offspring
@@ -35,11 +32,11 @@ class MateBox
     rect(x, y, boxSide, boxSide);
   }
 
-  void switcher(MateBox partner){  //test function
-     PImage store = section;
-       partner.section = section;
-       section = store;  
-  }
+//  void switcher(MateBox partner){  //test function
+//     PImage store = section;
+//       partner.section = section;
+//       section = store;  
+//  }
 
   MateBox crossover (MateBox partner)  
   {
@@ -49,7 +46,7 @@ class MateBox
     newSection.loadPixels();
 
     int crossover = int(random(section.pixels.length));
-    for (int i = 0; i < section.pixels.length; i++)
+    for (int i=0; i < section.pixels.length; i++)
     {
       if (i > crossover){
         newSection.pixels[i] = section.pixels[i];
@@ -73,15 +70,31 @@ class MateBox
     store.loadPixels();
     
     int crossover = int(random(section.pixels.length));
-    for (int i = 0; i < section.pixels.length; i++)
+    for (int i=0; i < section.pixels.length; i++)
     {
       if (i > crossover){
         store.pixels[i] = section.pixels[i];
-        partner.section.pixels[i] = store.pixels[i]; 
+        partner.section.pixels[i] = store.pixels[i];
+        section.updatePixels();
+        partner.section.updatePixels(); 
       }
       else{
         store.pixels[i] = partner.section.pixels[i];
         section.pixels[i] = store.pixels[i];
+        section.updatePixels();
+        partner.section.updatePixels();
+      }
+    }
+  }
+  
+  void mutate(float m, color mutation)
+  {
+    for (int i=0; i < section.pixels.length; i++)
+    {
+      if (random(1) < m){
+        section.loadPixels();
+        section.pixels[i] = mutation;
+        section.updatePixels();
       }
     }
   }
