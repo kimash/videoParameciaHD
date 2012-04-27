@@ -5,6 +5,8 @@ class MateBox
   int boxSide = 40;
   int x, y;
 
+  boolean once = false;
+
   MateBox (int x_, int y_)
   {
     x = x_;
@@ -19,24 +21,28 @@ class MateBox
 
   void grabVideo()
   {
-    section = get(x, y, boxSide, boxSide);
+    if (!once) {
+      section = feed.get(x, y, boxSide, boxSide);
+      once = true;
+    }
   }
-  
+
   void display()
   {
     //stroke(255, 255, 0);
     noStroke();
     noFill();
-  //section = get(x, y, boxSide, boxSide);
+    //tint(255,10);
+    //section = get(x, y, boxSide, boxSide);
     image(section, x, y);
     rect(x, y, boxSide, boxSide);
   }
 
-//  void switcher(MateBox partner){  //test function
-//     PImage store = section;
-//       partner.section = section;
-//       section = store;  
-//  }
+  //  void switcher(MateBox partner){  //test function
+  //     PImage store = section;
+  //       partner.section = section;
+  //       section = store;  
+  //  }
 
   MateBox crossover (MateBox partner)  
   {
@@ -48,19 +54,19 @@ class MateBox
     int crossover = int(random(section.pixels.length));
     for (int i=0; i < section.pixels.length; i++)
     {
-      if (i > crossover){
+      if (i > crossover) {
         newSection.pixels[i] = section.pixels[i];
       }
-      else{
+      else {
         newSection.pixels[i] = partner.section.pixels[i];
       }
     }
-    
+
     newSection.updatePixels();
     MateBox offspring = new MateBox(newSection);
     return offspring; //must define location for offspring box
   }
-  
+
   void conjugate(MateBox partner)  //paramecium-style conjugation
   {
     PImage store = createImage(boxSide, boxSide, RGB);
@@ -68,36 +74,37 @@ class MateBox
     section.loadPixels();
     partner.section.loadPixels();
     store.loadPixels();
-    
+
     int crossover = int(random(section.pixels.length));
     for (int i=0; i < section.pixels.length; i++)
     {
-      if (i > crossover){
+      if (i < crossover) {
         store.pixels[i] = section.pixels[i];
         partner.section.pixels[i] = store.pixels[i];
-        section.updatePixels();
-        partner.section.updatePixels(); 
       }
-      else{
+      else {
         store.pixels[i] = partner.section.pixels[i];
         section.pixels[i] = store.pixels[i];
-        section.updatePixels();
-        partner.section.updatePixels();
       }
     }
+    section.updatePixels();
+    partner.section.updatePixels();
   }
-  
+
   void mutate(float m, color mutation)
   {
-    for (int i=0; i < section.pixels.length; i++)
+    if (random(1) < m) {
+      once = false;
+      //tint(255,10); 
+    }
+    /*for (int i=0; i < section.pixels.length; i++)
     {
-      if (random(1) < m){
+      if (random(1) < m) {
         section.loadPixels();
         section.pixels[i] = mutation;
         section.updatePixels();
       }
-    }
+    }*/
   }
-    
- }
+}
 
