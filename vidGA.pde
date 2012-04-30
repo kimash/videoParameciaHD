@@ -1,6 +1,6 @@
 //Kim Ash
 //Nature of Code/Computational Cameras Final 2012
-//Evolving Video - genetic algorithm rearranges image pixels
+//Video Paramecia - algorithm based on paramecium conjugation alters image
 
 import processing.video.*;
 Capture feed;
@@ -10,7 +10,7 @@ int boxSide = 40;
 
 ArrayList<MateBox> matingPool;
 //int generations;
-color mutation = color(random(255), random(255), random(255));
+//color mutation = color(random(255), random(255), random(255));
 
 void setup()
 {
@@ -28,7 +28,6 @@ void setup()
       matingPool.add(mb[i][j]);
     }
   }
-  //frameRate(15);
 }
 
 void draw()
@@ -47,7 +46,7 @@ void draw()
     for (int i=0; i < 16; i++) {
       for (int j=0; j < 12; j++) {
         mb[i][j].grabVideo();
-        mb[i][j].mutate(0.01, mutation);
+        mb[i][j].mutate(0.01);
       }
     }
 
@@ -63,23 +62,21 @@ void draw()
 
 void reproduction()
 {
-  //randomSeed(10);
-  //for (int i = 0; i < matingPool.size(); i++)
-  //{
   int m = int(random(matingPool.size()));
-  int d = int(random(matingPool.size()));
+  
+  int mateShift = int(pow(-1,int(random(1))));  //select mate from 2 nearest neighbors
+  
+  if (m == 0)
+    mateShift = 1;
+    
+  if (m == matingPool.size()-1)
+    mateShift = -1;
+  
+  int d = m + mateShift;
 
   MateBox mom = matingPool.get(m);
   MateBox dad = matingPool.get(d);
 
-  //     MateBox offspring = mom.crossover(dad);
-  //     //replace randomly selected mb with newly created one
-  //     int b = int(random(matingPool.size()));  
-  //     MateBox birth = matingPool.get(b);
-  //     birth = offspring;
-  //     birth.display();
-
   mom.conjugate(dad);
-  //}
 }
 

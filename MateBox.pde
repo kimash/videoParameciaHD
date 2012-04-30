@@ -32,19 +32,13 @@ class MateBox
     //stroke(255, 255, 0);
     noStroke();
     noFill();
-    //tint(255,10);
+    tint(255,10);
     //section = get(x, y, boxSide, boxSide);
     image(section, x, y);
     rect(x, y, boxSide, boxSide);
   }
 
-  //  void switcher(MateBox partner){  //test function
-  //     PImage store = section;
-  //       partner.section = section;
-  //       section = store;  
-  //  }
-
-  MateBox crossover (MateBox partner)  
+  /*MateBox crossover (MateBox partner)  
   {
     PImage newSection = createImage(boxSide, boxSide, RGB);
     section.loadPixels();
@@ -65,7 +59,7 @@ class MateBox
     newSection.updatePixels();
     MateBox offspring = new MateBox(newSection);
     return offspring; //must define location for offspring box
-  }
+  }*/
 
   void conjugate(MateBox partner)  //paramecium-style conjugation
   {
@@ -91,11 +85,11 @@ class MateBox
     partner.section.updatePixels();
   }
 
-  void mutate(float m, color mutation)
+  void mutate(float m)
   {
     if (random(1) < m) {
       once = false;
-      //tint(255,10); 
+      //tint(random(255), random(255), random(255), 10); 
     }
     /*for (int i=0; i < section.pixels.length; i++)
     {
