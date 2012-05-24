@@ -2,7 +2,7 @@ class MateBox
 {
   public PImage section;
 
-  int boxSide = 40;
+  int boxSide = 80;
   int x, y;
 
   boolean once = false;
@@ -11,13 +11,13 @@ class MateBox
   {
     x = x_;
     y = y_;
-    section = new PImage(boxSide, boxSide);
+    section = createImage(boxSide, boxSide, RGB);
   }
 
-  MateBox (PImage img) //alternate constructor for offspring
-  {
-    section = img;
-  }
+//  MateBox (PImage img) //alternate constructor for offspring
+//  {
+//    section = img;
+//  }
 
   void grabVideo()
   {
@@ -32,8 +32,7 @@ class MateBox
     //stroke(255, 255, 0);
     noStroke();
     noFill();
-    tint(255,10);
-    //section = get(x, y, boxSide, boxSide);
+    tint(255,40);
     image(section, x, y);
     rect(x, y, boxSide, boxSide);
   }
@@ -91,14 +90,6 @@ class MateBox
       once = false;
       //tint(random(255), random(255), random(255), 10); 
     }
-    /*for (int i=0; i < section.pixels.length; i++)
-    {
-      if (random(1) < m) {
-        section.loadPixels();
-        section.pixels[i] = mutation;
-        section.updatePixels();
-      }
-    }*/
   }
 }
 
