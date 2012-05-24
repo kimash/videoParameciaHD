@@ -14,11 +14,6 @@ class MateBox
     section = createImage(boxSide, boxSide, RGB);
   }
 
-//  MateBox (PImage img) //alternate constructor for offspring
-//  {
-//    section = img;
-//  }
-
   void grabVideo()
   {
     if (!once) {
@@ -36,29 +31,6 @@ class MateBox
     image(section, x, y);
     rect(x, y, boxSide, boxSide);
   }
-
-  /*MateBox crossover (MateBox partner)  
-  {
-    PImage newSection = createImage(boxSide, boxSide, RGB);
-    section.loadPixels();
-    partner.section.loadPixels();
-    newSection.loadPixels();
-
-    int crossover = int(random(section.pixels.length));
-    for (int i=0; i < section.pixels.length; i++)
-    {
-      if (i > crossover) {
-        newSection.pixels[i] = section.pixels[i];
-      }
-      else {
-        newSection.pixels[i] = partner.section.pixels[i];
-      }
-    }
-
-    newSection.updatePixels();
-    MateBox offspring = new MateBox(newSection);
-    return offspring; //must define location for offspring box
-  }*/
 
   void conjugate(MateBox partner)  //paramecium-style conjugation
   {
@@ -87,8 +59,7 @@ class MateBox
   void mutate(float m)
   {
     if (random(1) < m) {
-      once = false;
-      //tint(random(255), random(255), random(255), 10); 
+      once = false; 
     }
   }
 }

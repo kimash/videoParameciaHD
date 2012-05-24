@@ -20,7 +20,7 @@ void setup()
 //frameRate (30);
   feed = new Capture(this, 1920, 1080); 
 //  feed.start();
-//  feed.settings();
+//  feed.settings();  //use for camera settings
 
   matingPool = new ArrayList<MateBox>();
 
@@ -36,8 +36,6 @@ void draw()
 {
   println(frameRate);
   if (frameCount > 30) {
-
-    //mutation = color(random(255), random(255), random(255));
 
     if (feed.available() == true) {
       feed.read();
