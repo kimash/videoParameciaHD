@@ -1,4 +1,4 @@
-//Kim Ash
+//© Kim Ash 2012
 //Nature of Code/Computational Cameras Final 2012
 //Video Paramecia - algorithm based on paramecium conjugation alters image
 //HD requires Processing 1.5.1
