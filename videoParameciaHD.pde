@@ -6,7 +6,7 @@
 import processing.video.*;
 Capture feed;
 
-MateBox mb[][] = new MateBox[16][12];  //[horiz][vert]
+MateBox mb[][] = new MateBox[16][9];  //[horiz][vert]
 int boxSide = 80;  //720p => 80, 1080p => 120
 int horiz = 16;
 int vert = 9;
