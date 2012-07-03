@@ -1,3 +1,4 @@
+//© Kim Ash 2012
 class MateBox
 {
   public PImage section;
