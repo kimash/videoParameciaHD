@@ -18,7 +18,7 @@ void setup()
   size (1280, 720);  //720p = (1280, 720), 1080p = (1920, 1080)
   rectMode(CORNER);
 //frameRate (30);
-  feed = new Capture(this, 1920, 1080); 
+  feed = new Capture(this, 1280, 720); 
 //  feed.start();
 //  feed.settings();  //use for camera settings
 
