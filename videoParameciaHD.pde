@@ -1,4 +1,4 @@
-//Kim Ash
+//© Kim Ash 2012
 //Nature of Code/Computational Cameras Final 2012
 //Video Paramecia - algorithm based on paramecium conjugation alters image
 //HD requires Processing 1.5.1
@@ -6,7 +6,7 @@
 import processing.video.*;
 Capture feed;
 
-MateBox mb[][] = new MateBox[16][12];  //[horiz][vert]
+MateBox mb[][] = new MateBox[16][9];  //[horiz][vert]
 int boxSide = 80;  //720p => 80, 1080p => 120
 int horiz = 16;
 int vert = 9;
@@ -18,7 +18,7 @@ void setup()
   size (1280, 720);  //720p = (1280, 720), 1080p = (1920, 1080)
   rectMode(CORNER);
 //frameRate (30);
-  feed = new Capture(this, 1920, 1080); 
+  feed = new Capture(this, 1280, 720); 
 //  feed.start();
 //  feed.settings();  //use for camera settings
 

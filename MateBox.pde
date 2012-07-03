@@ -2,7 +2,7 @@ class MateBox
 {
   public PImage section;
 
-  int boxSide = 80;
+  int boxSide = 80;  //720p => 80, 1080p => 120
   int x, y;
 
   boolean once = false;
